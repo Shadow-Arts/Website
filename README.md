@@ -1,1 +1,1 @@
-# Arts
+# Brevity - The Blog App
