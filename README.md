@@ -1,1 +1,1 @@
-# Brevity - Arts
+# Arts
