@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header/Header.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import About from './components/About/About.jsx';
@@ -26,15 +26,6 @@ function App() {
   return (
     <Router basename="/ArtsApp">
       <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
-      <nav>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About Us</Link></li>
-          <li><Link to="/contact">Contact</Link></li>
-          <li><Link to="/collaborate">Collaborate</Link></li>
-          {/* <li><Link to="/gallery">Gallery</Link></li> */}
-        </ul>
-      </nav>
 
       <main className="container">
         <Routes>
@@ -54,3 +45,4 @@ function App() {
     </Router>
   );
 }
+export default App;
