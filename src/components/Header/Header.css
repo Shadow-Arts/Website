@@ -3,6 +3,11 @@
   background-color: var(--bg-primary);
   box-shadow: var(--shadow);
   position: fixed;
+  display:block;
+  background-color: var(--bg-primary);
+  box-shadow: var(--shadow);
+  position: sticky
+  ;
   width: 100%;
   top: 0;
   z-index: 1000;
@@ -127,6 +132,11 @@
   .nav-open {
     display: block;
   }
+
+  body {
+    padding-top: 80px; 
+  }
+
 }
 
 /* Light Theme */
@@ -147,4 +157,14 @@ body.dark {
   --text-secondary: #ccc;
   --primary: #ee2a65e1;;
   --border: #555;
+}
+
+/* App.css or Global Styles */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+main {
+  margin-top: 80px; /* Adjust this based on the height of your header (e.g., 80px) */
 }

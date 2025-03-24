@@ -1,5 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; 
+<<<<<<< HEAD
+=======
+import { Instagram, Twitter, Facebook, Youtube, Tag } from 'lucide-react';
+>>>>>>> master
 import './Footer.css';
 
 function Footer() {
@@ -32,6 +36,7 @@ function Footer() {
         <div className="footer-section">
           <h3>Connect With Us</h3>
           <div className="social-links">
+<<<<<<< HEAD
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="footer-link">Facebook</a>
             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="footer-link">Twitter</a>
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="footer-link">Instagram</a>
@@ -39,6 +44,29 @@ function Footer() {
         </div>
 
       </div>
+=======
+          
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+          <Facebook size={30} className="icons"/>
+          </a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+          <Instagram size={30}  className="icons"/>
+          </a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+          <Twitter size={30}  className="icons"/>
+          </a>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+          <Youtube size={30}  className="icons"/>
+          </a>
+          <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer">
+          <Tag size={30}  className="icons"/> 
+          </a>
+        </div>
+        </div>
+      </div>
+      <br/>
+      <p className="copyright">&copy; 2025 ArtsCrafts. All rights reserved.</p>
+>>>>>>> master
     </footer>
   );
 }

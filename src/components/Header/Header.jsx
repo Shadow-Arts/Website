@@ -43,11 +43,19 @@ function Header({ isDarkMode, toggleDarkMode }) {
         <nav className={`nav ${isMenuOpen ? 'nav-open' : ''}`}>
           <ul className="nav-list">
             <li><Link to="/" className="nav-link">Home</Link></li>
+<<<<<<< HEAD
             <li><Link to="/shop" className="nav-link">Shop Now</Link></li>
             <li><Link to="/new-arrivals" className="nav-link">New Arrivals</Link></li>
             <li><Link to="/contact" className="nav-link">Contact</Link></li>
             <li><Link to="/about" className="nav-link">About Us</Link></li>
             <li><Link to="/help" className="nav-link">Help</Link></li>
+=======
+            <li><Link to="/gallery" className="nav-link">Gallery</Link></li>
+            <li><Link to="/workshops" className="nav-link">Workshops</Link></li>
+            <li><Link to="/events" className="nav-link">Events</Link></li>
+            <li><Link to="/about" className="nav-link">About Us</Link></li>
+            <li><Link to="/contact" className="nav-link">Contact</Link></li>
+>>>>>>> master
             <li><Link to="/collaborate" className="nav-link">Collaborate</Link></li>
           </ul>
         </nav>
