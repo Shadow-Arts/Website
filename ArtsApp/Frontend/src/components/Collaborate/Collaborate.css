@@ -1,0 +1,144 @@
+.collaborate-section {
+    padding: 50px 0;
+    background-color: var(--bg-primary);
+  }
+  
+  .collaborate-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .collaborate-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 30px;
+    font-weight: bold;
+  }
+  
+  .collaborate-form {
+    margin-bottom: 50px;
+  }
+  
+  .collaborate-form h3 {
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+  }
+  
+  .collaborate-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .collaborate-form input,
+  .collaborate-form textarea {
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: 2px solid var(--border);
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .collaborate-form input:focus,
+  .collaborate-form textarea:focus {
+    border-color: var(--primary);
+  }
+  
+  .collaborate-form button {
+    background-color: var(--primary);
+    color: var(--text-light);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .collaborate-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+  }
+  
+  .partners-section {
+    text-align: center;
+    margin-top: 60px;
+  }
+  
+  .partners-section h3 {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 30px;
+  }
+  
+  .partners-logos {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+  }
+  
+  .partners-logos img {
+    width: 150px;
+    height: auto;
+    transition: transform 0.3s ease;
+  }
+  
+  .partners-logos img:hover {
+    transform: scale(1.1);
+  }
+  
+  .connect-with-us {
+    text-align: center;
+    margin-top: 60px;
+  }
+  
+  .connect-with-us h3 {
+    font-size: 1.8rem;
+    color: var(--primary);
+    margin-bottom: 30px;
+  }
+  
+  .social-links a {
+    margin: 0 15px;
+    color: var(--text-primary);
+  }
+  
+  .social-links a:hover {
+    color: var(--primary);
+  }
+  
+  @media screen and (max-width: 768px) {
+    .collaborate-form {
+      width: 100%;
+    }
+  
+    .partners-logos {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .social-links {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .collaborate-container p {
+    font-size: 24px;
+    color: var(text-primary) ; 
+    margin-bottom: 20px;
+    text-align :center;
+  }
+  
+
+
+  
