@@ -1,0 +1,98 @@
+.contact-container {
+    background-color: var(--bg-primary); /* Match the header background */
+    color: var(--text-primary);
+    padding: 20px; /* Reduced padding to fit the form neatly */
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-top: 80px; /* Ensure the form doesn't overlap the fixed header */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+    width: 100%; /* Full width to take the screen width */
+    max-width: 600px; /* Restrict the maximum width to fit the form neatly */
+    margin-left: auto;
+    margin-right: auto; /* Horizontally center the container */
+  }
+  
+  .contact-container h1, .contact-container h3 {
+    color: var(--text-primary);
+    margin-bottom: 20px; /* Add space below titles */
+    text-align: center; /* Center align the titles */
+  }
+  
+  .social-media {
+    margin-bottom: 30px;
+    text-align: center; /* Center align the social media section */
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 20px;
+    justify-content: center; /* Center social icons */
+  }
+  
+  .social-links a img {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .message-form {
+    background-color: var(--bg-primary); /* Match the header background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .message-form h3 {
+    color: var(--text-primary);
+    margin-bottom: 20px; /* Add space below the heading */
+  }
+  
+  .message-form input,
+  .message-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    transition: border-color 0.3s ease;
+  }
+  
+  .message-form input:focus,
+  .message-form textarea:focus {
+    border-color: var(--primary);
+  }
+  
+  .message-form button {
+    background-color: var(--primary);
+    color: var(--text-light);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px; /* Add space above the button */
+  }
+  
+  .message-form button:hover {
+    background-color: var(--accent);
+  }
+  
+  .social-links a {
+    color: var(--text-primary); /* Set the icon color to text-primary */
+    margin: 0 10px; /* Add spacing between icons */
+  }
+  
+  .social-links a:hover {
+    color: var(--primary); /* Add hover effect */
+  }
+  
