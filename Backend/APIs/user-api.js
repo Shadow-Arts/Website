@@ -10,7 +10,7 @@ let expressAsyncHandler = require("express-async-handler")
 //middleware
 let usersCollection 
 let artsCollection
-// let ordersCollection
+let ordersCollection
 let eventsCollection
 let coursesCollection
 let messagesCollection
@@ -18,7 +18,7 @@ let messagesCollection
 userApp.use((req,res,next)=>{
     usersCollection = req.app.get('usersCollection')
     artsCollection = req.app.get('artsCollection')
-    // ordersCollection = req.app.get('ordersCollection')
+    ordersCollection = req.app.get('ordersCollection')
     eventsCollection = req.app.get('eventsCollection')
     coursesCollection = req.app.get('coursesCollection')
     messagesCollection = req.app.get('messagesCollection')
@@ -45,34 +45,57 @@ userApp.put("/users/:username", verifyToken ,expressAsyncHandler( async(req, res
     res.send({message:"Profile Changes Successful"})
 }));
 
-// // Get user’s cart
-// userApp.get("/users/cart", verifyToken ,expressAsyncHandler( async(req, res) => {
-//     const user = await usersCollection.find({username:req.body.username}).toArray()
-//     res.send({message:'User\'s Cart',payload:user.cart})
-// }));
+// Get user’s cart
+userApp.get("/users/:userId/cart", verifyToken ,expressAsyncHandler( async(req, res) => {
+    const user = await usersCollection.findOne({_id: new ObjectId(req.params.userId)} ,{ projection: { cart: { $elemMatch: { deleted: { $ne: true } } } } })
+    res.send({message:'User\'s Cart',payload:user.cart})
+}));
 
-// // Add item to cart 
-// userApp.post("/users/cart", verifyToken ,expressAsyncHandler( async(req, res) => {
-//     const { username, artId , quantity } = req.body
-//     await usersCollection.updateOne({ username },{$addToSet: {cart: { artId, quantity: quantity || 1 },},});
-//     res.send({message:'Added Item to cart'})
-// }));
+// Add item to cart 
+userApp.post("/users/:userId/cart", verifyToken ,expressAsyncHandler( async(req, res) => {
+    const { artId , quantity ,deleted } = req.body
+    await usersCollection.updateOne({ _id:new ObjectId(req.params.userId) },{$addToSet: {cart: { artId : artId , quantity: quantity || 1 ,deleted : deleted}}});
+    res.send({message:'Added Item to cart'})
+}));
 
-// // Remove item from cart(soft delete)
-// userApp.put("/users/cart/:id", verifyToken ,expressAsyncHandler( async(req, res) => {
-//     const art = req.body;
-//     await usersCollection.updateOne({username : art.username ,"cart._id":new ObjectId(req.params.id)},{$set:{"cart.$.deleted" : true}})
-//     res.send({message:'Removed item from cart'})
-// }));
+// Remove item from cart(soft delete)
+userApp.put("/users/:userId/cart/:artid", verifyToken ,expressAsyncHandler( async(req, res) => {
+    await usersCollection.updateOne({_id: new ObjectId(req.params.userId),"cart.artId" : req.params.artid} ,{$set:{"cart.$.deleted" : true}})
+    res.send({message:'Removed item from cart'})
+}));
 
-// // Get user’s order history
-// userApp.get("/users/orders", verifyToken ,expressAsyncHandler( async(req, res) => {
-
-// }));
 
 // // Order Routes
-// userApp.post("/orders", verifyToken ,expressAsyncHandler( async(req, res) => {}));
-// userApp.get("/orders/:id", verifyToken ,expressAsyncHandler( async(req, res) => {})); // Track Order
+ 
+// Get user’s order history
+userApp.get("/users/:userId/orders", verifyToken ,expressAsyncHandler( async(req, res) => {
+    const user = await usersCollection.findOne({_id: new ObjectId(req.params.userId)})
+    res.send({message:"Order history",payload:user.orders || []})
+}));
+
+// Place an order
+userApp.post("/users/:userId/orders", verifyToken ,expressAsyncHandler( async(req, res) => {
+    const order = req.body
+    const insertedOrder = await ordersCollection.insertOne({...order,userId : new ObjectId(req.params.userId)})
+    await usersCollection.updateOne({_id: new ObjectId(req.params.userId)},{$addToSet :{ orders :{ "orderId": insertedOrder.insertedId , "items" : order.items ,"totalPrice":order.totalPrice,"status":order.status,"orderTime":order.orderTime,"modifyTime":order.modifyTime}}})
+    res.send({message:"Order Placed"})
+}));
+
+// Track Order
+userApp.get("/orders/:orderId", verifyToken ,expressAsyncHandler( async(req, res) => {
+    const order = await ordersCollection.findOne({_id:new ObjectId(req.params.orderId)})
+    if (!order) {
+        return res.status(404).send({ message: "Order not found" });
+    }
+    res.send({message:"Order Status",payload:order.status})
+})); 
+
+// Cancel order
+userApp.put("/orders/:orderId", verifyToken ,expressAsyncHandler( async(req, res) => {
+    const order = await ordersCollection.updateOne({_id:new ObjectId(req.params.orderId)},{$set:{ status: req.body.status,modifyTime: req.body.modifyTime}})
+    await usersCollection.updateOne({ _id:new ObjectId(order.userId) }, { $set: { "orders.$[elem].status": req.body.status, "orders.$[elem].modifyTime": req.body.modifyTime }},{arrayFilters: [{ "elem.orderId": new ObjectId(req.params.orderId) }] });
+    res.send({message:'Order cancelled'})
+})); 
 
 // Artwork Routes
 
