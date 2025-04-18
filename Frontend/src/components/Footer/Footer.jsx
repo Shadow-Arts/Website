@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; 
-import { Instagram, Twitter, Facebook, Youtube, Tag } from 'lucide-react';
+import { Instagram, Twitter, Facebook, Youtube, Tag, Linkedin } from 'lucide-react';
 import './Footer.css';
 
 function Footer() {
@@ -34,20 +34,20 @@ function Footer() {
           <h3>Connect With Us</h3>
           <div className="social-links">
           
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.facebook.com/teamshadowarts" target="_blank" rel="noopener noreferrer">
           <Facebook size={30} className="icons"/>
           </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://instagram.com/_shadowarts_official?igshid=YTQwZjQ0NmI0OA==" target="_blank" rel="noopener noreferrer">
           <Instagram size={30}  className="icons"/>
           </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://twitter.com/teamshadowarts" target="_blank" rel="noopener noreferrer">
           <Twitter size={30}  className="icons"/>
           </a>
-          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://youtube.com/@ShadowArts_Official?si=yQLt80KSo09oxA9p" target="_blank" rel="noopener noreferrer">
           <Youtube size={30}  className="icons"/>
           </a>
-          <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer">
-          <Tag size={30}  className="icons"/> 
+          <a href="http://www.linkedin.com/in/shadowarts" target="_blank" rel="noopener noreferrer">
+          <Linkedin size={30}  className="icons"/> 
           </a>
         </div>
         </div>

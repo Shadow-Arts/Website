@@ -11,11 +11,12 @@ const products = [
   },
   {
     id: 2,
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4FvboUdHkrIdcw5ImR6m3fS07irIH85Mntw&s', // Replace with real image path
+    image: 'https://drive.google.com/uc?export=view&id=1XBJ6j93kSXiXtUEUd1duHYhQjTFGtaqK',
     title: 'Landscape Painting',
     description: 'A beautiful landscape with vibrant colors.',
     price: '$200',
   },
+  
   {
     id: 3,
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4FvboUdHkrIdcw5ImR6m3fS07irIH85Mntw&s', // Replace with real image path
