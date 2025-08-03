@@ -5,7 +5,10 @@
   justify-content: center;
   gap: 32px;
   padding: 40px 0;
-  background-color: #fff6ee;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #ccd2d8;
 }
 
 /* Individual card */
