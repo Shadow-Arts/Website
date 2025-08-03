@@ -1,89 +1,69 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header/Header.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import About from './components/About/About.jsx';
 import Home from './components/Home/Home.jsx';
-import Collaborate from './components/Collaborate/Collaborate.jsx';
 import Contact from './components/Contact/Contact.jsx';
 import Gallery from './components/Gallery/Gallery.jsx';
-import Login from './components/Login/Login.jsx';
-import Signup from './components/Signup/Signup.jsx';
-import Profile from './components/Profile/Profile.jsx';
 import Events from './components/Events/Events.jsx';
-import AuthWrapper from './components/Auth/AuthWrapper.jsx';
-import PrivateRoute from './components/PivateRoute/PrivateRoute.jsx';
+import Courses from "./components/Courses/Courses.jsx";
+import FAQs from './components/Footer/faqs.jsx';
+import PrivacyPolicy from './components/Footer/privacy-policy.jsx';
+import SearchResults from './components/SearchResults/SearchResult.jsx';
+import AdminLogin from './components/Admin/AdminLogin.jsx';
+import AdminEvents from './components/Admin/AdminEvents.jsx';
+import AdminCourses from './components/Admin/AdminCourses.jsx';
+import AdminGallery from './components/Admin/AdminGallery.jsx';
+import Order from './components/Orders/Order.jsx';
+import myFavicon from './assets/logo.png';
+
 import './styles/global.css';
 import { useState, useEffect } from 'react';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(localStorage.getItem('theme') === 'dark');
-  const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('isAuthenticated') === 'true');
+  const isAdmin = !!localStorage.getItem('adminToken');
 
   useEffect(() => {
     document.body.className = isDarkMode ? 'dark' : 'light';
     localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
   }, [isDarkMode]);
 
+  useEffect(() => {
+      document.title = "Shadow Arts"; // This would override "Shadow Arts"
+    }, []);
+  // Set favicon dynamically
+  useEffect(() => {
+    const link = document.querySelector("link[rel*='icon']");
+    link.href = myFavicon;
+  }, []);
+    
+
   const toggleDarkMode = () => {
     setIsDarkMode(prevMode => !prevMode);
   };
 
-  const handleLogin = (credentials) => {
-    console.log('Login attempt with:', credentials);
-    setIsAuthenticated(true);
-    localStorage.setItem('isAuthenticated', 'true');
-    return true;
-  };
-
-  const handleSignup = (userData) => {
-    console.log('Signup with:', userData);
-    setIsAuthenticated(true);
-    localStorage.setItem('isAuthenticated', 'true');
-    return true;
-  };
-
-  const handleLogout = () => {
-    setIsAuthenticated(false);
-    localStorage.removeItem('isAuthenticated');
-  };
-
   return (
     <Router basename="/ShadowArts">
-      <Header 
-        isDarkMode={isDarkMode} 
-        toggleDarkMode={toggleDarkMode} 
-        isAuthenticated={isAuthenticated}
-        onLogout={handleLogout}
-      />
+      <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
       <main className="container">
         <Routes>
-          <Route path="/" element={<AuthWrapper />} />
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/events" element={<Events />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/login" element={<Login />} />
-
-          <Route
-            path="/home"
-            element={
-              <PrivateRoute>
-                <Home />
-              </PrivateRoute>
-            }
-          />
-
-          {/* Auth Pages */}
-          <Route path="/login" element={isAuthenticated ? <Navigate to="/profile" replace /> : <Login onLogin={handleLogin} />} />
-          <Route path="/signup" element={isAuthenticated ? <Navigate to="/" replace /> : <Signup onSignup={handleSignup} />} />
-
-          {/* Protected Pages */}
-          <Route path="/profile" element={isAuthenticated ? <Profile /> : <Navigate to="/login" replace />} />
-          <Route path="/collaborate" element={isAuthenticated ? <Collaborate /> : <Navigate to="/login" replace />} />
-
-          {/* Fallback */}
+          <Route path="/gallery" element={<Gallery />} /> 
+          <Route path="/courses" element={<Courses />} />
+          <Route path="/orders" element={<Order />} />
+          <Route path="/" element={<Home />} />
           <Route path="*" element={<Home />} />
+          <Route path="/faqs" element={<FAQs />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/search" element={<SearchResults />} />
+          <Route path="/admin/events" element={isAdmin ? <AdminEvents /> : <AdminLogin onLogin={() => window.location.reload()} />} />
+          <Route path="/admin/courses" element={isAdmin ? <AdminCourses /> : <AdminLogin onLogin={() => window.location.reload()} />} />
+          <Route path="/admin/gallery" element={isAdmin ? <AdminGallery /> : <AdminLogin onLogin={() => window.location.reload()} />} />
+          <Route path="/admin/login" element={<AdminLogin onLogin={() => window.location.reload()} />} />
         </Routes>
       </main>
       <Footer />

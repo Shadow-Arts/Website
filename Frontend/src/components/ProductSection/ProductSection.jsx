@@ -1,94 +1,62 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Heart, ShoppingCart } from 'lucide-react';
+import { Heart } from 'lucide-react';
 import './ProductSection.css';
 
 const products = {
-  newArrivals: [
+  paintings: [
     {
       id: 1,
-      name: "Handwoven Basket",
-      price: 49.99,
-      image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+      name: "Little Hands, Big Art",
+      image: "https://res.cloudinary.com/dzyatxl5c/image/upload/v1753088409/Screenshot_2025-07-21_142848_wz0rsq.png"
     },
     {
       id: 2,
-      name: "Ceramic Vase",
-      price: 79.99,
-      image: "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+      name: "Creative Bonds",
+      image: "https://res.cloudinary.com/dzyatxl5c/image/upload/v1753088518/Screenshot_2025-07-21_143104_c2ey5k.png"
     },
     {
       id: 3,
-      name: "Macrame Wall Hanging",
-      price: 89.99,
-      image: "https://images.unsplash.com/photo-1582643381669-0486f3282660?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+      name: "Framed Moments",
+      image: "https://res.cloudinary.com/dzyatxl5c/image/upload/v1753088641/Screenshot_2025-07-21_143301_evbdyo.png"
     },
     {
       id: 4,
-      name: "Handmade Soap Set",
-      price: 29.99,
-      image: "https://images.unsplash.com/photo-1547793549-70faf88838c8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+      name: "Coastal Whispers",
+      image: "https://res.cloudinary.com/dzyatxl5c/image/upload/v1753088808/Screenshot_2025-07-21_143556_byujmg.png"
     }
   ],
-  popular: [
+  crafts: [
     {
       id: 5,
-      name: "Wooden Serving Tray",
-      price: 59.99,
-      image: "https://images.unsplash.com/photo-1541976590-713941681591?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+      name: "Crafting Memories: A Father’s Reflection",
+      type: "video",
+      source: "https://res.cloudinary.com/dzyatxl5c/video/upload/v1753090724/WhatsApp_Video_2025-07-16_at_23.07.39_34807957_bcoqni.mp4"
     },
     {
       id: 6,
-      name: "Hand-painted Mug",
-      price: 24.99,
-      image: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+      name: "A moment of pride for our budding creators",
+      type: "video",
+      source: "https://res.cloudinary.com/dzyatxl5c/video/upload/v1753103679/WhatsApp_Video_2025-07-21_at_18.42.03_1ec44481_edirck.mp4"
     },
     {
       id: 7,
-      name: "Knitted Throw Blanket",
-      price: 119.99,
-      image: "https://images.unsplash.com/photo-1543248939-ff40856f65d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+      name: "Family Threads: Creating Together with Shadow Arts",
+      type: "video",
+      source: "https://res.cloudinary.com/dzyatxl5c/video/upload/v1753090990/WhatsApp_Video_2025-07-07_at_21.04.48_f952f3a0_v3isaq.mp4"
     },
     {
       id: 8,
-      name: "Pottery Bowl Set",
-      price: 69.99,
-      image: "https://images.unsplash.com/photo-1610701596007-11502861dcfa?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+      name: "A journey of learning and self-expression",
+      type: "video",
+      source: "https://res.cloudinary.com/dzyatxl5c/video/upload/v1753116980/WhatsApp_Video_2025-07-21_at_19.50.48_a11005ad_lmyzv9.mp4"
     }
   ],
-  deals: [
-    {
-      id: 9,
-      name: "Handmade Candle Set",
-      price: 34.99,
-      originalPrice: 49.99,
-      image: "https://images.unsplash.com/photo-1602874801007-aa87920a440b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
-    },
-    {
-      id: 10,
-      name: "Woven Wall Art",
-      price: 79.99,
-      originalPrice: 129.99,
-      image: "https://images.unsplash.com/photo-1580380853934-834251ec0e95?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
-    },
-    {
-      id: 11,
-      name: "Ceramic Plant Pot",
-      price: 29.99,
-      originalPrice: 44.99,
-      image: "https://images.unsplash.com/photo-1485955900006-10f4d324d411?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
-    },
-    {
-      id: 12,
-      name: "Handwoven Scarf",
-      price: 39.99,
-      originalPrice: 59.99,
-      image: "https://images.unsplash.com/photo-1601244005535-a48d21d951ac?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
-    }
-  ]
 };
 
-function ProductCard({ product, isDiscount }) {
+function ProductCard({ product }) {
+  const isVideo = product.type === 'video';
+
   return (
     <motion.div 
       className="product-card"
@@ -97,20 +65,36 @@ function ProductCard({ product, isDiscount }) {
       transition={{ duration: 0.5 }}
     >
       <div className="product-image-container">
-        <img src={product.image} alt={product.name} className="product-image" />
+        {isVideo ? (
+          <video
+            className="product-video"
+            src={product.source}
+            muted
+            playsInline
+            loop
+            preload="metadata"
+            onMouseOver={(e) => {
+              const video = e.target;
+              if (video.readyState >= 2) {
+                video.play().catch(() => {});
+              } else {
+                video.addEventListener('canplay', () => {
+                  video.play().catch(() => {});
+                }, { once: true });
+              }
+            }}
+            onMouseOut={(e) => e.target.pause()}
+          />
+        ) : (
+          <img src={product.image} alt={product.name} className="product-image" />
+        )}
+
         <div className="product-actions">
-          <button className="action-btn"><Heart size={20} /></button>
-          <button className="action-btn"><ShoppingCart size={20} /></button>
+          <button className="action-btn" title="Like this art"><Heart size={20} /></button>
         </div>
       </div>
       <div className="product-info">
         <h3>{product.name}</h3>
-        <div className="price-container">
-          <span className="price">${product.price}</span>
-          {isDiscount && (
-            <span className="original-price">${product.originalPrice}</span>
-          )}
-        </div>
       </div>
     </motion.div>
   );
@@ -120,31 +104,23 @@ function ProductSection() {
   return (
     <div className="product-sections">
       <section className="product-section">
-        <h2>New Arrivals</h2>
+        <h2>Highlights</h2>
         <div className="products-grid">
-          {products.newArrivals.map((product) => (
+          {products.paintings.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
       </section>
 
       <section className="product-section">
-        <h2>Popular Items</h2>
+        <h2>Crafts & Testimonials</h2>
         <div className="products-grid">
-          {products.popular.map((product) => (
+          {products.crafts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
       </section>
 
-      <section className="product-section">
-        <h2>Special Deals</h2>
-        <div className="products-grid">
-          {products.deals.map((product) => (
-            <ProductCard key={product.id} product={product} isDiscount={true} />
-          ))}
-        </div>
-      </section>
     </div>
   );
 }

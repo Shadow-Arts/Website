@@ -1,0 +1,95 @@
+.admin-gallery-container {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #f6faff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.admin-gallery-container h2 {
+  text-align: center;
+  color: #2d6cdf;
+  margin-bottom: 2rem;
+}
+
+.admin-gallery-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.admin-gallery-form input,
+.admin-gallery-form textarea,
+.admin-gallery-form select[name="category"] {
+  padding: 0.7rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #fff;
+  color: #333;
+  transition: border-color 0.2s;
+}
+
+.admin-gallery-form select[name="category"]:focus,
+.admin-gallery-form input:focus,
+.admin-gallery-form textarea:focus {
+  border-color: #2d6cdf;
+  outline: none;
+}
+
+.admin-gallery-form option {
+  color: #333;
+}
+
+.admin-gallery-form button {
+  background: #2d6cdf;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.admin-gallery-form button:hover {
+  background: #1a4fa0;
+}
+
+.admin-gallery-list {
+  list-style: none;
+  padding: 0;
+}
+
+.admin-gallery-list li {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.admin-gallery-list b {
+  color: #2d6cdf;
+}
+
+.admin-gallery-list button {
+  margin-left: 0.5rem;
+  padding: 0.4rem 1rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  background: #f5427b;
+  color: #fff;
+  transition: background 0.2s;
+}
+
+.admin-gallery-list button:hover {
+  background: #c41c5a;
+}

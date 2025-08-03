@@ -1,49 +1,33 @@
-const exp =require('express')
-const app = exp()
+require('dotenv').config();
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
 
-require('dotenv').config()
+// Route imports
+const searchRoutes = require('./routes/search');
+const adminRoutes = require('./routes/admin');
+const eventRoutes = require('./routes/events');
+const courseRoutes = require('./routes/courses');
+const galleryRoutes = require('./routes/gallery');
 
-app.use(exp.json())
+const app = express();
 
-const mongoClient = require('mongodb').MongoClient
-mongoClient.connect(process.env.DB_URL)
-.then(client=>{
-    const artsDBObj=client.db('artsappdb')
+// Middleware
+app.use(cors());
+app.use(express.json());
 
-    const usersCollection = artsDBObj.collection('users')
-    const adminCollection = artsDBObj.collection('admin')
-    const artsCollection = artsDBObj.collection('gallery')
-    const ordersCollection = artsDBObj.collection('orders')
-    const eventsCollection = artsDBObj.collection('events')
-    const coursesCollection = artsDBObj.collection('courses')
-    const messagesCollection = artsDBObj.collection('queries')
+// MongoDB Atlas Connection
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('✅ Connected to MongoDB Atlas'))
+  .catch((err) => console.error('❌ MongoDB connection error:', err));
 
-    app.set('usersCollection',usersCollection)
-    app.set('adminCollection',adminCollection)
-    app.set('artsCollection',artsCollection)
-    app.set('ordersCollection',ordersCollection)
-    app.set('eventsCollection',eventsCollection)
-    app.set('coursesCollection',coursesCollection)
-    app.set('messagesCollection',messagesCollection)
+// Routes
+app.use('/api/search', searchRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/events', eventRoutes);
+app.use('/api/courses', courseRoutes);
+app.use('/api/gallery', galleryRoutes);
 
-    console.log("DB conected")
-})
-.catch(err=>{
-    console.log("error in db connection ",err)
-})
-
-const userApp = require("./APIs/user-api.js")
-const adminApp = require("./APIs/admin-api.js")
-
-app.use('/user-api',userApp)
-app.use('/admin-api',adminApp)
-
-
-
-app.use((err,req,res,next)=>{
-    res.send({status:'error',message:err.message})
-})
-
-const port = process.env.port||4000
-
-app.listen(port,()=>console.log(`server on ${port}`))
+// Start server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));

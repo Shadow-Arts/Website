@@ -84,3 +84,48 @@
     }
   }
   
+
+
+
+
+
+  .cropped-img-container {
+    width: 300px; /* adjust as needed */
+    height: 300px; /* adjust as needed */
+    overflow: hidden;
+    position: relative;
+    border-radius: 8px; /* optional */
+  }
+  
+  .cropped-img-container img {
+    position: absolute;
+    top: -30px; /* adjust this to crop top */
+    left: -30px; /* adjust this to crop left */
+    width: auto;
+    height: 360px; /* make sure image overflows */
+    object-fit: cover;
+  }
+  
+
+
+  .category-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .category-tabs button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #f0f0f0;
+    cursor: pointer;
+  }
+  
+  .category-tabs button.active {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .category-tabs button:hover {
+    background-color: #ddd;
+  }

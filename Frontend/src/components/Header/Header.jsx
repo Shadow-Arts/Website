@@ -1,21 +1,20 @@
 import React from 'react';
-import { Palette, Search, ShoppingCart, User, Sun, Moon, Menu } from 'lucide-react';
+import { Search, Sun, Moon, Menu } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import './Header.css';
 
 function Header({ isDarkMode, toggleDarkMode }) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [query, setQuery] = React.useState('');
   const navigate = useNavigate();
 
-  // 🔒 Check if user is logged in
-  const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
-
-  const handleProfileClick = () => {
-    if (isAuthenticated) {
-      navigate('/profile');
-    } else {
-      navigate('/login');
+  // Handle search submit (navigate to /search with query param)
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (query.trim()) {
+      navigate(`/search?q=${encodeURIComponent(query.trim())}`);
+      setIsMenuOpen(false); // Optionally close mobile menu on search
     }
   };
 
@@ -29,23 +28,23 @@ function Header({ isDarkMode, toggleDarkMode }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Palette size={32} />
+            <img src={require('../../assets/logo.png')} alt="Shadow Arts Logo" className="logo-img" />
             <span>Shadow Arts</span>
           </motion.div>
 
-          <div className="search-bar">
-            <input type="text" placeholder="Search for arts & crafts..." />
-            <Search className="search-icon" size={20} />
-          </div>
+          <form className="search-bar" onSubmit={handleSearchSubmit}>
+            <input
+              type="text"
+              placeholder="Search for arts, courses, events..."
+              value={query}
+              onChange={e => setQuery(e.target.value)}
+            />
+            <button type="submit" className="search-btn" aria-label="Search">
+              <Search className="search-icon" size={20} />
+            </button>
+          </form>
 
           <div className="header-actions">
-            <User 
-              size={24} 
-              className="clickable-icon"
-              onClick={handleProfileClick} 
-              title="Profile" 
-            />
-            <ShoppingCart size={24} />
             <button className="theme-toggle" onClick={toggleDarkMode}>
               {isDarkMode ? <Sun size={24} /> : <Moon size={24} />}
             </button>
@@ -59,12 +58,13 @@ function Header({ isDarkMode, toggleDarkMode }) {
 
         <nav className={`nav ${isMenuOpen ? 'nav-open' : ''}`}>
           <ul className="nav-list">
-            <li><Link to="/" className="nav-link">Home</Link></li>
-            <li><Link to="/gallery" className="nav-link">Gallery</Link></li>
-            <li><Link to="/workshops" className="nav-link">Courses</Link></li>
-            <li><Link to="/events" className="nav-link">Events</Link></li>
-            <li><Link to="/about" className="nav-link">About Us</Link></li>
-            <li><Link to="/contact" className="nav-link">Contact</Link></li>
+            <li><Link to="/" className="nav-link" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
+            <li><Link to="/gallery" className="nav-link" onClick={() => setIsMenuOpen(false)}>Student Works</Link></li>
+            <li><Link to="/courses" className="nav-link" onClick={() => setIsMenuOpen(false)}>Courses</Link></li>
+            <li><Link to="/events" className="nav-link" onClick={() => setIsMenuOpen(false)}>Events</Link></li>
+            <li><Link to="/orders" className='nav-link' onClick={() => setIsMenuOpen(false)}>Order</Link></li>
+            <li><Link to="/about" className="nav-link" onClick={() => setIsMenuOpen(false)}>About Us</Link></li>
+            <li><Link to="/contact" className="nav-link" onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
           </ul>
         </nav>
       </div>

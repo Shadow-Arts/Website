@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
-import { Instagram, Twitter, Facebook, Youtube, Tag, Phone } from 'lucide-react';
-import './Contact.css'; // Make sure to import the CSS file
+import { Instagram, Twitter, Facebook, Youtube, Tag } from 'lucide-react';
+import emailjs from 'emailjs-com';
+import './Contact.css';
+
+const SERVICE_ID = 'service_vglh77v';
+const TEMPLATE_ID = 'template_lz0o0zs';
+const PUBLIC_KEY = '1K5nbrebWo95zVakd'; // sometimes called user_id
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +14,7 @@ const Contact = () => {
     phone: '',
     message: '',
   });
+  const [sending, setSending] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,7 +26,16 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData); // Process form data (send to backend)
+    setSending(true);
+    emailjs.send(SERVICE_ID, TEMPLATE_ID, formData, PUBLIC_KEY)
+      .then(() => {
+        alert('Message sent successfully!');
+        setFormData({ name: '', email: '', phone: '', message: '' });
+      })
+      .catch(() => {
+        alert('Failed to send message. Please try again.');
+      })
+      .finally(() => setSending(false));
   };
 
   return (
@@ -30,23 +45,20 @@ const Contact = () => {
       <div className="social-media">
         <h3>Connect with Us on Social Media</h3>
         <div className="social-links">
-          <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer">
-          <Phone size={30} /> 
+          <a href="https://www.facebook.com/teamshadowarts" target="_blank" rel="noopener noreferrer">
+            <Facebook size={30} />
           </a>
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-          <Facebook size={30} />
+          <a href="https://instagram.com/_shadowarts_official?igshid=YTQwZjQ0NmI0OA==" target="_blank" rel="noopener noreferrer">
+            <Instagram size={30} />
           </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-          <Instagram size={30} />
+          <a href="https://twitter.com/teamshadowarts" target="_blank" rel="noopener noreferrer">
+            <Twitter size={30} />
           </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-          <Twitter size={30} />
-          </a>
-          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
-          <Youtube size={30} />
+          <a href="https://youtube.com/@ShadowArts_Official?si=yQLt80KSo09oxA9p" target="_blank" rel="noopener noreferrer">
+            <Youtube size={30} />
           </a>
           <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer">
-          <Tag size={30} /> 
+            <Tag size={30} />
           </a>
         </div>
       </div>
@@ -71,7 +83,7 @@ const Contact = () => {
             required
           />
           <input
-            type="phone"
+            type="text"
             name="phone"
             value={formData.phone}
             onChange={handleChange}
@@ -86,7 +98,9 @@ const Contact = () => {
             rows="4"
             required
           />
-          <button type="submit">Send Message</button>
+          <button type="submit" disabled={sending}>
+            {sending ? 'Sending...' : 'Send Message'}
+          </button>
         </form>
       </div>
     </div>
