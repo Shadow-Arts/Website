@@ -16,7 +16,7 @@ const Events = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/events')
+    fetch('https://website-mrlr.onrender.com/api/events')
       .then(res => res.json())
       .then(data => {
         setEvents(data);

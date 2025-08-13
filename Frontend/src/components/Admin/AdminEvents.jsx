@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './AdminEvents.css';
 
-const API_URL = 'http://localhost:5000/api/events';
+const API_URL = 'https://website-mrlr.onrender.com/api/events';
 
 const initialForm = {
   name: '',

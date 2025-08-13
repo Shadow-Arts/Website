@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './AdminCourses.css';
 
-const API_URL = 'http://localhost:5000/api/courses';
+const API_URL = 'https://website-mrlr.onrender.com/api/courses';
 
 const categories = [
   'Classes',

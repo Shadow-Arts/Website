@@ -1,14 +1,16 @@
-// filepath: routes/admin.js
 const express = require('express');
 const router = express.Router();
+const Admin = require('../models/Admin');
 
-router.post('/validate-token', (req, res) => {
+async function checkAdminToken(req, res, next) {
   const token = req.headers['x-admin-token'];
-  if (token === process.env.ADMIN_TOKEN) {
-    res.json({ valid: true });
-  } else {
-    res.status(403).json({ valid: false, error: 'Invalid admin token' });
-  }
+  const admin = await Admin.findOne({ token });
+  if (!admin) return res.status(403).json({ error: 'Invalid token' });
+  next();
+}
+
+router.post('/validate-token', checkAdminToken, (req, res) => {
+  res.json({ valid: true });
 });
 
 module.exports = router;

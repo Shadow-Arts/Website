@@ -14,7 +14,7 @@ const SearchResults = () => {
   useEffect(() => {
     if (!query) return;
     setLoading(true);
-    fetch(`http://localhost:5000/api/search?q=${encodeURIComponent(query)}`)
+    fetch(`https://website-mrlr.onrender.com/api/search?q=${encodeURIComponent(query)}`)
       .then(res => res.json())
       .then(data => {
         setResults(data);

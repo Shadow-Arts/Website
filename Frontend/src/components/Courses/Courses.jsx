@@ -16,7 +16,7 @@ const Courses = () => {
   const [selectedCourse, setSelectedCourse] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/courses')
+    fetch('https://website-mrlr.onrender.com/api/courses')
       .then(res => res.json())
       .then(data => {
         setCourses(data);

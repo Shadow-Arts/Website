@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './AdminGallery.css';
 
-const API_URL = 'http://localhost:5000/api/gallery';
+const API_URL = 'https://website-mrlr.onrender.com/api/gallery';
 
 const initialForm = {
   image: '',

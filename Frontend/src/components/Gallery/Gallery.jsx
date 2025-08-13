@@ -9,7 +9,7 @@ const Gallery = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/gallery')
+    fetch('https://website-mrlr.onrender.com/api/gallery')
       .then(res => res.json())
       .then(data => {
         setProducts(data);

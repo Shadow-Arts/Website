@@ -8,7 +8,7 @@ const AdminLogin = ({ onLogin }) => {
     e.preventDefault();
     setError('');
     // Validate token with backend
-    const res = await fetch('http://localhost:5000/api/admin/validate-token', {
+    const res = await fetch('https://website-mrlr.onrender.com/api/admin/validate-token', {
       method: 'POST',
       headers: { 'x-admin-token': token }
     });
