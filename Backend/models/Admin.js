@@ -5,4 +5,4 @@ const adminSchema = new mongoose.Schema({
   token: String
 });
 
-module.exports = mongoose.model('Admin', adminSchema);
+module.exports = mongoose.model('Admin', adminSchema, 'admin'); // <-- specify collection name
