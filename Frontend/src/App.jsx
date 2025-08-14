@@ -44,7 +44,7 @@ function App() {
   };
 
   return (
-    <Router basename="/ShadowArts">
+    <Router basename="/">
       <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
       <main className="container">
         <Routes>
