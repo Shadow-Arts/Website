@@ -1,4 +1,4 @@
-const Admin = require('../models/admin'); // adjust the path to your Admin model
+const Admin = require('../models/Admin'); // adjust the path to your Admin model
 
 module.exports = async (req, res, next) => {
   try {
